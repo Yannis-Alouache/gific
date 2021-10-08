@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <>
             <div class="mb-16">
-                <footer class="text-gray-600 body-font bg-black">
+                <footer class="text-gray-600 body-font bg-primary">
                     <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
                     <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
                         <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900" href="/">
@@ -84,7 +84,7 @@ const Footer = () => {
                     </div>
                     </div>
                     <div class="bg-gray-900">
-                    <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+                    <div class="container border-t-4 border-secondary mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
                         <p class="text-white text-sm text-center sm:text-left">Made with &#128151; by
                         <a href="https://github.com/Yannis-Alouache" rel="noopener noreferrer" class="text-gray-400 ml-1" target="_blank">Yannis Alouache</a>
                         </p>
