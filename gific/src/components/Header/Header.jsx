@@ -4,8 +4,41 @@ import { Popover, Transition } from "@headlessui/react"
 import { IconContext } from "react-icons";
 import { AiOutlineMenu, AiOutlineClose, AiOutlineStar } from "react-icons/ai"
 import { secondary } from '../../utils/colors';
+import "./Header.css"
 
 const Header = () => {
+
+    const navItems = [
+        {
+            "href": "#",
+            "name": "Réactions"   
+        },
+        {
+            "href": "#",
+            "name": "Divertissement"   
+        },
+        {
+            "href": "#",
+            "name": "Sport"   
+        },
+        {
+            "href": "#",
+            "name": "Sticker"   
+        },
+        {
+            "href": "#",
+            "name": "Artistes"   
+        }
+    ]
+
+    function setActive(index, elem) {
+        const navItems = document.getElementsByClassName("nav-item")
+        for (let i = 0; i < navItems.length; i++) {
+            navItems[i].classList.remove("active")
+        }
+        elem.classList.add("active");
+    }
+
     return (
         <>
         <IconContext.Provider value={{ color: secondary }}>
@@ -36,29 +69,15 @@ const Header = () => {
                         {/* navitem container hidden on mobile */}
                         <div className="hidden md:flex space-x-10">
                             {/* navitem */}
-                            <a href="#" className="text-base font-medium text-white">
-                                Réactions
-                            </a>
+                            
+                            {navItems.map((navItem, index) => {
+                                return (
+                                    <a href={navItem.href} name={navItem.name} className="text-base font-medium text-white nav-item py-2" onClick={(e) => setActive(index, e.target)}>
+                                        {navItem.name}
+                                    </a>
+                                )
+                            })}
 
-                            {/* navitem */}
-                            <a href="#" className="text-base font-medium text-white">
-                                Divertissement
-                            </a>
-
-                            {/* navitem */}
-                            <a href="#" className="text-base font-medium text-white">
-                                Sports
-                            </a>
-
-                            {/* navitem */}
-                            <a href="#" className="text-base font-medium text-white">
-                                Stickers
-                            </a>
-
-                            {/* navitem */}
-                            <a href="#" className="text-base font-medium text-white">
-                                Artistes
-                            </a>
                         </div>                        
                     </div>
 
