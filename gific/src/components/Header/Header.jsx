@@ -1,16 +1,20 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import logo from '../../assets/image/logo.png'
 import { Popover, Transition } from "@headlessui/react"
 import { IconContext } from "react-icons";
 import { AiOutlineMenu, AiOutlineClose, AiOutlineStar } from "react-icons/ai"
 import { secondary } from '../../utils/colors';
+import {
+   useLocation
+} from "react-router-dom";
 import "./Header.css"
 
 const Header = () => {
 
+    const location = useLocation()
     const navItems = [
         {
-            "href": "#",
+            "href": "/test",
             "name": "Réactions"   
         },
         {
@@ -31,13 +35,19 @@ const Header = () => {
         }
     ]
 
-    function setActive(index, elem) {
-        const navItems = document.getElementsByClassName("nav-item")
-        for (let i = 0; i < navItems.length; i++) {
-            navItems[i].classList.remove("active")
+    useEffect(() => {        
+        const item = document.getElementsByClassName("nav-item");
+        for (let i = 0; i < item.length; i++) {
+            item[i].classList.remove("active");
         }
-        elem.classList.add("active");
-    }
+        for (let i = 0; i < item.length; i++) {
+            console.log(item[i].getAttribute("href"), " = ", location.pathname)
+            if (item[i].getAttribute("href") === location.pathname) {
+                item[i].classList.add("active");
+            }
+        }
+    }, [])
+
 
     return (
         <>
@@ -48,7 +58,7 @@ const Header = () => {
                         
                         {/* logo container */}
                         <div className="flex justify-start lg:w-0 lg:flex-1">
-                            <a href="#">
+                            <a href="/">
                                 <span className="sr-only">logo</span>
                                 <img 
                                     className="h-14 w-auto sm:h-20"
@@ -72,7 +82,7 @@ const Header = () => {
                             
                             {navItems.map((navItem, index) => {
                                 return (
-                                    <a href={navItem.href} name={navItem.name} className="text-base font-medium text-white nav-item py-2" onClick={(e) => setActive(index, e.target)}>
+                                    <a href={navItem.href} name={navItem.name} className="text-base font-medium text-white nav-item py-2">
                                         {navItem.name}
                                     </a>
                                 )
@@ -90,7 +100,7 @@ const Header = () => {
                         leaveFrom="opacity-100 scale-100"
                         leaveTo="opacity-0 scale-95"
                     >
-                        <Popover.Panel focus className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+                        <Popover.Panel focus className="absolute top-0 inset-x-0 transition transform origin-top-right md:hidden">
                             <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-primary divide-y-2 divide-gray-50">
                                 <div className="pt-5 pb-6 px-5">
                                     <div className="flex items-center justify-between">
@@ -110,26 +120,16 @@ const Header = () => {
                                     </div>
                                     <div className="mt-6">
                                         <nav className="grid gap-y-8">
-                                            <a href="#" className="-m-3 p-3 flex items-center rounded-md">
-                                                <AiOutlineStar className="flex-shrink-0 h-6 w-6"/>
-                                                <span className="ml-3 text-base font-medium text-white">Réactions</span>
-                                            </a>
-                                            <a href="#" className="-m-3 p-3 flex items-center rounded-md">
-                                                <AiOutlineStar className="flex-shrink-0 h-6 w-6"/>
-                                                <span className="ml-3 text-base font-medium text-white">Divertissements</span>
-                                            </a>
-                                            <a href="#" className="-m-3 p-3 flex items-center rounded-md">
-                                                <AiOutlineStar className="flex-shrink-0 h-6 w-6"/>
-                                                <span className="ml-3 text-base font-medium text-white">Sports</span>
-                                            </a>
-                                            <a href="#" className="-m-3 p-3 flex items-center rounded-md">
-                                                <AiOutlineStar className="flex-shrink-0 h-6 w-6"/>
-                                                <span className="ml-3 text-base font-medium text-white">Stickers</span>
-                                            </a>
-                                            <a href="#" className="-m-3 p-3 flex items-center rounded-md">
-                                                <AiOutlineStar className="flex-shrink-0 h-6 w-6"/>
-                                                <span className="ml-3 text-base font-medium text-white">Artistes</span>
-                                            </a>
+
+                                            {navItems.map((item, index) => {
+                                                return (
+                                                    <a href={item.href} className="-m-3 p-3 flex items-center rounded-md">
+                                                        <AiOutlineStar className="flex-shrink-0 h-6 w-6"/>
+                                                        <span className="ml-3 text-base font-medium text-white">{item.name}</span>
+                                                    </a>   
+                                                ) 
+                                            })}
+
                                         </nav>
                                     </div>
                                 </div>
