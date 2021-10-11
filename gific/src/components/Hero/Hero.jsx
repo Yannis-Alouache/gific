@@ -10,7 +10,7 @@ const Hero = () => {
                     <img src={image} class="min-w-full min-h-full absolute object-cover"></img>
                 </div>
                 <div class="video-content space-y-2">
-                    <h1 class="text-6xl">GIFIC C'EST VOTRE SOURCE DE GIFS TENDANCE !</h1>
+                    <h1 class="text-3xl md:text-6xl">GIFIC C'EST VOTRE SOURCE DE GIFS TENDANCE !</h1>
                 </div>
             </section>
         </>
