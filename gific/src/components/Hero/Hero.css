@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
+
+.hero-section {
+    height: 600px;
+}
+
+.video-docker::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #943232b7;
+    z-index: 1;
+}
+
+.video-content {
+    font-family: 'Montserrat', sans-serif;
+    z-index: 2;
+}
